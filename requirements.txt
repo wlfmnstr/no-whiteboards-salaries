@@ -1,0 +1,6 @@
+requests~=2.27.1
+setuptools==60.5.0
+BeautifulSoup4~=4.10.0
+selenium~=4.1.0
+requests-html~=0.10.0
+webdriver-manager~=3.5.2
