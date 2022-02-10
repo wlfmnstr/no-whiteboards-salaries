@@ -1,4 +1,6 @@
 from unittest import TestCase
+
+import levels.scape
 import main as SUT
 
 
@@ -13,7 +15,7 @@ class Test(TestCase):
         super().setUp()
 
     def test_get_table_data(self):
-        rows = SUT.get_table_data([self.row_text_1, self.row_text_2])
+        rows = levels.scape.get_table_data([self.row_text_1, self.row_text_2])
         self.assertIsNotNone(rows, "result should not be None")
         self.assertIsNotNone(rows[0], "first row should not be None")
         for i in range(2):
@@ -35,7 +37,7 @@ class Test(TestCase):
         self.row_text_2 = 'Hudson River Trading\nNew York, NY\nSWE\nCore\n$1,000,000\n150k | N/A | 850k'
         self.row_text_3 = 'Hudson River Trading\nSWE\nCore\n$1,000,000\n150k | N/A | 850k'
         self.row_text_4 = 'Hudson River Trading\nNew York, NY | 1/3/2022\nSWE\nCore\n1 / 5\n$1,000,000\n150k | N/A | 850k'
-        rows = SUT.get_table_data([self.row_text_1, self.row_text_2, self.row_text_3, self.row_text_4])
+        rows = levels.scape.get_table_data([self.row_text_1, self.row_text_2, self.row_text_3, self.row_text_4])
         self.assertEquals(len(rows), 2)
         for i in range(2):
             row = rows[i]
@@ -54,11 +56,11 @@ class Test(TestCase):
     def test_get_table_data_all_bad_rows(self):
         self.row_text_1 = 'Hudson River Trading\nNew York, NY | 1/3/2022\nSWE\nCore\n1 / 5\n150k | N/A | 850k'
         self.row_text_2 = 'Hudson River Trading\nNew York, NY\nSWE\nCore\n$1,000,000\n150k | N/A | 850k'
-        rows = SUT.get_table_data([self.row_text_1, self.row_text_2])
+        rows = levels.scape.get_table_data([self.row_text_1, self.row_text_2])
         self.assertEqual(len(rows), 0)
 
     def test_get_table_headers(self):
-        headers = SUT.get_table_headers(self.header_text)
+        headers = levels.scape.get_table_headers(self.header_text)
         self.assertIsNotNone(headers, "results should not be None")
         self.assertEqual(11, len(headers))
 
